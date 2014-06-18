@@ -33,6 +33,7 @@ class GameScene: SKScene {
         // we retrieve it
         let context = UIGraphicsGetCurrentContext()
         
+        // we set our color to white (this will be the text color)
         CGContextSetFillColorWithColor(context, CGColorCreateGenericRGB(1, 1, 1, 1))
         
         // we draw our inage to the graphics context
