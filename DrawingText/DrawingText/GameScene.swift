@@ -28,7 +28,7 @@ class GameScene: SKScene {
         let rect = CGRectMake(0, 0, image.size.width, image.size.height)
         
         // we create our graphics context at the size of our image
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: image.size.width, height: image.size.height), true, 1)
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: rect.width, height: rect.height), true, 0)
         
         // we retrieve it
         let context = UIGraphicsGetCurrentContext()
@@ -41,6 +41,7 @@ class GameScene: SKScene {
         
         // the size of our text
         let size = text.sizeWithFont(font)
+        
         // the rect for the drawing position of our copyright text message
         let rectText = CGRectMake(image.size.width-size.width, image.size.height-(size.height+4), image.size.width-(size.width+4), image.size.height)
         
@@ -49,7 +50,8 @@ class GameScene: SKScene {
         
         // we grab a UIImage from the graphics context
         let newImage = UIGraphicsGetImageFromCurrentImageContext();
-       // we remove our bitmap from the stack
+        
+        // we remove our bitmap from the stack
         UIGraphicsEndImageContext();
         
         // we create a texture, pass the UIImage
@@ -66,7 +68,6 @@ class GameScene: SKScene {
         
         // let's display it
         self.addChild(sprite)
-        
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
