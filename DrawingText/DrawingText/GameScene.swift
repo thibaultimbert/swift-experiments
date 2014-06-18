@@ -39,8 +39,11 @@ class GameScene: SKScene {
         // we draw our image to the graphics context
         image.drawInRect(rect)
         
+        // a dictionary informing about the font used, required by sizeWithAttributes to query the text size
+        let attr = [NSFontAttributeName: font]
+
         // the size of our text
-        let size = text.sizeWithFont(font)
+        let size = text.sizeWithAttributes(attr)
         
         // the rect for the drawing position of our copyright text message
         let rectText = CGRectMake(image.size.width-size.width, image.size.height-(size.height+4), image.size.width-(size.width+4), image.size.height)
