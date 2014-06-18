@@ -19,10 +19,10 @@ class GameScene: SKScene {
         let text: NSString = "Copyright © - Thibault Imbert"
         
         // we reference our image (path)
-        var data = NSData (contentsOfFile: "/Users/timbert/Documents/Ayden.jpg")
+        let data = NSData (contentsOfFile: "/Users/timbert/Documents/Ayden.jpg")
         
         // we create a UIImage out of it
-        var image = UIImage(data: data)
+        let image = UIImage(data: data)
         
         // our rectangle for the drawing size
         let rect = CGRectMake(0, 0, image.size.width, image.size.height)
