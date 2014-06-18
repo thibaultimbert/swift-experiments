@@ -12,7 +12,7 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
 
         // we pick the font we want to use
-        let font = UIFont(name: "Verdana", size: 14)
+        let font = UIFont(name: "Arial", size: 18)
         
         // our string, note that we use here NSString instead of String that has more APIs like drawInRect and size
         // it is preferred to use Swift native rypes like String but for now String has a limited API surface
@@ -29,6 +29,11 @@ class GameScene: SKScene {
         
         // we create our graphics context at the size of our image
         UIGraphicsBeginImageContextWithOptions(CGSize(width: image.size.width, height: image.size.height), true, 1)
+        
+        // we retrieve it
+        let context = UIGraphicsGetCurrentContext()
+        
+        CGContextSetFillColorWithColor(context, CGColorCreateGenericRGB(1, 1, 1, 1))
         
         // we draw our inage to the graphics context
         image.drawInRect(rect)
@@ -56,7 +61,7 @@ class GameScene: SKScene {
         sprite.setScale(0.5);
         
         // we position it
-        sprite.position = CGPoint (x: 510, y: 380)
+        sprite.position = CGPoint (x: 510, y: 300)
         
         // let's display it
         self.addChild(sprite)
