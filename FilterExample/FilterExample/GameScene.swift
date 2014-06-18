@@ -51,7 +51,7 @@ class GameScene: SKScene {
         // wrap it inside a sprite node
         var sprite = SKSpriteNode(texture:texture)
         // we scale it a bit
-        sprite.setScale(0.5);
+        //sprite.setScale(0.5);
         // we position it
         sprite.position = CGPoint (x: 510, y: 380)
         // let's display it

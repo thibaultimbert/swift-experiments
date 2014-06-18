@@ -13,12 +13,14 @@ class GameScene: SKScene {
 
         // we pick the font we want to use
         let font = UIFont(name: "Verdana", size: 14)
-        // our string, note that we use here NSString instead of String that has more APIs like drawInRect and size 
+        
+        // our string, note that we use here NSString instead of String that has more APIs like drawInRect and size
         // it is preferred to use Swift native rypes like String but for now String has a limited API surface
         let text: NSString = "Copyright © - Thibault Imbert"
         
         // we reference our image (path)
         var data = NSData (contentsOfFile: "/Users/timbert/Documents/Ayden.jpg")
+        
         // we create a UIImage out of it
         var image = UIImage(data: data)
         
@@ -27,6 +29,8 @@ class GameScene: SKScene {
         
         // we create our graphics context at the size of our image
         UIGraphicsBeginImageContextWithOptions(CGSize(width: image.size.width, height: image.size.height), true, 1)
+        
+        // we draw our inage to the graphics context
         image.drawInRect(rect)
         
         // the size of our text
@@ -44,12 +48,16 @@ class GameScene: SKScene {
         
         // we create a texture, pass the UIImage
         var texture = SKTexture(image: newImage)
+        
         // wrap it inside a sprite node
         var sprite = SKSpriteNode(texture:texture)
+        
         // we scale it a bit
         sprite.setScale(0.5);
+        
         // we position it
         sprite.position = CGPoint (x: 510, y: 380)
+        
         // let's display it
         self.addChild(sprite)
         
