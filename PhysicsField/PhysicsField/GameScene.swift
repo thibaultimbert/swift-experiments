@@ -12,8 +12,8 @@ let canvasHeight: UInt32 = 800
 // When a physics body is inside the region of a SKFieldNode object, that field node’s categoryBitMask property is
 // compared to this physics body’s fieldBitMask property by performing a logical AND operation.
 // If the result is a non-zero value, then the field node’s effect is applied to the physics body.
-let fieldMask : UInt32 = 1
-let categoryMask: UInt32 = 1
+let fieldMask : UInt32 = 0b1
+let categoryMask: UInt32 = 0b1
 
 // our main logic inside this class
 // we subclass the SKScene class by using the :TheType syntax below
