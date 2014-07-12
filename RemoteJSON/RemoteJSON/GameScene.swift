@@ -20,7 +20,7 @@ class GameScene: SKScene {
         let loader = NSURLConnection(request: request, delegate: self, startImmediately: true)
     }
     
-    func connection(didReceiveResponse: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
+    func connection(connection: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
         // we initialize our buffer
         self.bytes = NSMutableData()
     }
