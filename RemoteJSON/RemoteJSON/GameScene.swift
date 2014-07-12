@@ -13,7 +13,6 @@ class GameScene: SKScene {
     var bytes: NSMutableData?
     
     override func didMoveToView(view: SKView) {
-        
         // this is our remote end point (similar to URLRequest in AS3)
         let request = NSURLRequest(URL: NSURL(string: "http://bytearray.org/wp-content/projects/json/colors.json"))
         
@@ -22,10 +21,12 @@ class GameScene: SKScene {
     }
     
     func connection(didReceiveResponse: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
-       self.bytes = NSMutableData()
+        // we initialize our buffer
+        self.bytes = NSMutableData()
     }
     
     func connection(connection: NSURLConnection!, didReceiveData conData: NSData!) {
+        // we append the bytes as they come in
         self.bytes?.appendData(conData)
     }
     
