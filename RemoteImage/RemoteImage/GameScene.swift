@@ -44,6 +44,7 @@ class GameScene: SKScene {
         // we divide the loaded bytes with the total bytes to get the ratio, we mulitply by 100
         // note that we floor the value
         var ratio = floor((Float64(self.bytes!.length) / totalBytes!) * 100)
+        
         // we cast to Int to remove the decimal and concatenate with %
         self.label!.text = String (Int(ratio)) + " %"
     }
@@ -51,19 +52,26 @@ class GameScene: SKScene {
     func connectionDidFinishLoading(connection: NSURLConnection!) {
         // we create a UIImage out of the completed bytes we loaded
         let imageBytes = UIImage(data: self.bytes)
+        
         // we create a texture
         let texture = SKTexture(image: imageBytes)
+        
         // then a sprite
         let sprite = SKSpriteNode(texture: texture)
+        
         // we calculate the ratio so that our image can fit in the canvas size and be scaled appropriately
         var scalingRatio = min (self.view.bounds.width/sprite.size.width, self.view.bounds.height/sprite.size.height)
+        
         // we apply the scaling
         sprite.xScale = scalingRatio
         sprite.yScale = scalingRatio
+        
         // we position our image
         sprite.position = CGPoint (x: 510, y: 380)
+        
         // we remove the percentage label
         label!.removeFromParent()
+        
         // we add our final image to the display list
         addChild(sprite)
     }
