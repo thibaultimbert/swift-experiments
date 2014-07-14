@@ -13,12 +13,11 @@ class GameScene: SKScene {
     // our properties
     var bytes: NSMutableData?
     var totalBytes: Float64?
-    var label: SKLabelNode?
+    let label: SKLabelNode = SKLabelNode(fontNamed: "Verdana")
     
     override func didMoveToView(view: SKView) {
         // we create our text label for the preloading infos
-        label = SKLabelNode(fontNamed: "Verdana")
-        label!.position = CGPoint (x: 520, y: 380)
+        label.position = CGPoint (x: 520, y: 380)
         addChild (label)
         
         // this is our remote end point (similar to URLRequest in AS3)
@@ -46,7 +45,7 @@ class GameScene: SKScene {
         var ratio = floor((Float64(self.bytes!.length) / totalBytes!) * 100)
         
         // we cast to Int to remove the decimal and concatenate with %
-        self.label!.text = String (Int(ratio)) + " %"
+        self.label.text = String (Int(ratio)) + " %"
     }
     
     func connectionDidFinishLoading(connection: NSURLConnection!) {
@@ -70,7 +69,7 @@ class GameScene: SKScene {
         sprite.position = CGPoint (x: 510, y: 380)
         
         // we remove the percentage label
-        label!.removeFromParent()
+        label.removeFromParent()
         
         // we add our final image to the display list
         addChild(sprite)
