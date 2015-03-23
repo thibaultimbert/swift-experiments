@@ -16,7 +16,7 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         
         // we set the background color to black, self is the equivalent of this in Flash
-        self.scene.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        self.scene?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         
         // we live in a world with gravity on the y axis
         self.physicsWorld.gravity = CGVectorMake(0, -6)
@@ -26,7 +26,7 @@ class GameScene: SKScene {
         self.physicsBody = physicsBody
         
         // let's create 20 bouncing balls
-        for i in 1..30 {
+        for i in 1...30 {
             
             // SkShapeNode is a primitive for drawing like with the AS3 Drawing API
             // it has built in support for primitives like a circle, so we pass a radius
@@ -49,11 +49,11 @@ class GameScene: SKScene {
             // this is the most important line, we define the body
             shape.physicsBody = SKPhysicsBody(circleOfRadius: shape.frame.size.width/2)
             // this defines the mass, roughness and bounciness
-            shape.physicsBody.friction = 0.3
-            shape.physicsBody.restitution = 0.8
-            shape.physicsBody.mass = 0.5
+            shape.physicsBody?.friction = 0.3
+            shape.physicsBody?.restitution = 0.8
+            shape.physicsBody?.mass = 0.5
             // this will allow the balls to rotate when bouncing off each other
-            shape.physicsBody.allowsRotation = true
+            shape.physicsBody?.allowsRotation = true
         }
     }
     

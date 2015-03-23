@@ -14,7 +14,7 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         // this is our remote end point (similar to URLRequest in AS3)
-        let request = NSURLRequest(URL: NSURL(string: "http://bytearray.org/wp-content/projects/json/colors.json"))
+        let request = NSURLRequest(URL: NSURL(string: "http://bytearray.org/wp-content/projects/json/colors.json")!)
         
         // this is what creates the connection and dispatches the varios events to track progression, etc.
         let loader = NSURLConnection(request: request, delegate: self, startImmediately: true)
@@ -33,7 +33,7 @@ class GameScene: SKScene {
     func connectionDidFinishLoading(connection: NSURLConnection!) {
         
         // we serialize our bytes back to the original JSON structure
-        let jsonResult: Dictionary = NSJSONSerialization.JSONObjectWithData(self.bytes, options: NSJSONReadingOptions.MutableContainers, error: nil) as Dictionary<String, AnyObject>
+        let jsonResult: Dictionary = NSJSONSerialization.JSONObjectWithData(self.bytes!, options: NSJSONReadingOptions.MutableContainers, error: nil) as Dictionary<String, AnyObject>
         
         // we grab the colorsArray element
         let results: NSArray = jsonResult["colorsArray"] as NSArray

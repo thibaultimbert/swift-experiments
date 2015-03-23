@@ -24,7 +24,7 @@ class GameScene: SKScene {
     
     // the NSCoder abstract class declares the interface used by concrete subclasses (thanks 3r1d!)
     // see: http://stackoverflow.com/users/2664437/3r1d
-    init(coder decoder: NSCoder!){
+    required init?(coder decoder: NSCoder){
         // we create a magnetic field
         fieldNode = SKFieldNode.magneticField()
         // we define its body
@@ -41,7 +41,7 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         
         // we set the background color to black, self is the equivalent of this in Flash
-        self.scene.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        self.scene?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         // we live in a world with gravity
         self.physicsWorld.gravity = CGVectorMake(0, -1)
         // we put contraints on the top, left, right, bottom so that our balls can bounce off them
@@ -52,7 +52,7 @@ class GameScene: SKScene {
         self.addChild(fieldNode)
         
         // let's create 300 bouncing cubes
-        for i in 1..300 {
+        for i in 1...300 {
             
             // SkShapeNode is a primitive for drawing like with the AS3 Drawing API
             // it has built in support for primitives like a circle, or a rectangle, here we pass a rectangle
@@ -73,22 +73,22 @@ class GameScene: SKScene {
             physics body. The force has a magnitude proportional to the field’s strength property and the physics body’s
             charge and velocity properties.*/
             // we define a mass for the gravity
-            shape.physicsBody.mass = 0.9
+            shape.physicsBody?.mass = 0.9
             // the charge and field strength are two properties fun tweaking
-            shape.physicsBody.charge = 0.6
+            shape.physicsBody?.charge = 0.6
             // we set the field mask
-            shape.physicsBody.fieldBitMask = fieldMask
+            shape.physicsBody?.fieldBitMask = fieldMask
             // this will allow the balls to rotate when bouncing off each other
-            shape.physicsBody.allowsRotation = true
+            shape.physicsBody?.allowsRotation = true
         }
     }
     
     // we capture the touch move events by overriding touchesMoved method
-    override func touchesMoved(touches: NSSet!, withEvent event: UIEvent!) {
+    override func touchesMoved(touches: (NSSet!), withEvent event: UIEvent) {
         // we grab the UITouch object in the current scene (self) coordinate
-        let touch = event.allTouches().anyObject().locationInNode(self)
+        let touch = event.allTouches()?.anyObject()?.locationInNode(self)
         // we apply the position of the touch to the physics field node
-        self.fieldNode.position = touch
+        self.fieldNode.position = touch!
     }
     
     // magic of the physics engine, we don't have to do anything here

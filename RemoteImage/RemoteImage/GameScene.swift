@@ -21,7 +21,7 @@ class GameScene: SKScene {
         addChild (label)
         
         // this is our remote end point (similar to URLRequest in AS3)
-        let request = NSURLRequest(URL: NSURL(string: "https://s3.amazonaws.com/ooomf-com-files/yvDPJ8ZSmSVob7pRxIvU_IMG_40322.jpg"))
+        let request = NSURLRequest(URL: NSURL(string: "https://s3.amazonaws.com/ooomf-com-files/yvDPJ8ZSmSVob7pRxIvU_IMG_40322.jpg")!)
         
         // this is what creates the connection and dispatches the varios events to track progression, etc.
         let loader = NSURLConnection(request: request, delegate: self, startImmediately: true)
@@ -50,29 +50,32 @@ class GameScene: SKScene {
     
     func connectionDidFinishLoading(connection: NSURLConnection!) {
         // we create a UIImage out of the completed bytes we loaded
-        let imageBytes = UIImage(data: self.bytes)
+        let imageBytes = UIImage(data: self.bytes!)
         
         // we create a texture
-        let texture = SKTexture(image: imageBytes)
+        let texture = SKTexture(image: imageBytes!)
         
         // then a sprite
         let sprite = SKSpriteNode(texture: texture)
         
-        // we calculate the ratio so that our image can fit in the canvas size and be scaled appropriately
-        var scalingRatio = min (self.view.bounds.width/sprite.size.width, self.view.bounds.height/sprite.size.height)
+        if let bounds = self.view?.bounds {
         
-        // we apply the scaling
-        sprite.xScale = scalingRatio
-        sprite.yScale = scalingRatio
+            // we calculate the ratio so that our image can fit in the canvas size and be scaled appropriately
+            var scalingRatio = min (bounds.width/sprite.size.width, bounds.height/sprite.size.height)
         
-        // we position our image
-        sprite.position = CGPoint (x: 510, y: 380)
+            // we apply the scaling
+            sprite.xScale = scalingRatio
+            sprite.yScale = scalingRatio
         
-        // we remove the percentage label
-        label.removeFromParent()
+            // we position our image
+            sprite.position = CGPoint (x: 510, y: 380)
         
-        // we add our final image to the display list
-        addChild(sprite)
+            // we remove the percentage label
+            label.removeFromParent()
+        
+            // we add our final image to the display list
+            addChild(sprite)
+        }
     }
     
     override func update(currentTime: CFTimeInterval) {

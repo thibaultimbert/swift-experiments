@@ -39,7 +39,7 @@ class GameScene: SKScene {
         let filteredImage = UIImage(CGImage: filteredImageRef);
         
         // we create a texture, pass the UIImage
-        let texture = SKTexture(image: filteredImage)
+        let texture = SKTexture(image: filteredImage!)
         // wrap it inside a sprite node
         let sprite = SKSpriteNode(texture:texture)
         // we scale it a bit
